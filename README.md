@@ -47,6 +47,12 @@ The application manages the complete conversation history on the client side whe
 * **Isadora Mendes 52559**
 * **Daniel Viegas 52885**
 
+## Project Plan
+
+The project plan, with tasks, milestones and assignees, is available in [docs/PROJECT_PLAN.md](docs/projectPlan.md).
+
+This document was drafted with the assistance of Claude (Anthropic) and is meant only as an initial guideline. It may be adjusted throughout the project as the group's needs and progress evolve.
+
 ## Course
 
 **Mobile Devices Programming**  
