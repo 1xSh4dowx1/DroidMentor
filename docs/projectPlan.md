@@ -2,7 +2,11 @@
 
 ## Division of work
 
-| | Feature | Owns | Learns |
+A : 52599 - Duarte Rodrigues
+B : 52885 - Daniel Viegas
+C : 52559 - Isadora Mendes
+
+| Student | Feature | Owns | Learns |
 |---|---|---|---|
 | **A** | Chat with the mentor | Active Chat screen, state machine, payload construction, Gemini/Ktor client, network check, base error handling | Compose, ViewModel, Ktor + Serialization |
 | **B** | Conversation history | Chat History screen, new/delete conversation, message persistence, resume last conversation on launch | Compose, ViewModel, Room + DataStore |
