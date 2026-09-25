@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DroidMentor"
 include(":app")
+include(":core")

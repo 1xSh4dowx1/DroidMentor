@@ -4,6 +4,14 @@ DroidMentor is an Android application that works as a personal **Android develop
 
 The application follows a **Bring Your Own Key (BYOK)** approach, allowing users to configure their own Gemini API key.
 
+## Authors - PDM 52D
+
+* **Duarte Rodrigues 52599**
+* **Isadora Mendes 52559**
+* **Daniel Viegas 52885**
+
+
+
 ## Features
 
 * Chat with an Android development mentor
@@ -40,12 +48,6 @@ The application follows a **Bring Your Own Key (BYOK)** approach, allowing users
 The application is designed as an **offline-first** Android application. Conversation history is stored locally using Room, while the Gemini API is used for new interactions when an internet connection is available.
 
 The application manages the complete conversation history on the client side when communicating with Gemini.
-
-## Authors
-
-* **Duarte Rodrigues 52599**
-* **Isadora Mendes 52559**
-* **Daniel Viegas 52885**
 
 ## Project Plan
 
