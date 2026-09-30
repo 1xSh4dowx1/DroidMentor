@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">DroidMentor</string>
+
+    <!-- Common -->
+    <string name="nav_back">Voltar</string>
+    <string name="placeholder_coming_soon">Em breve…</string>
+
+    <!-- Title -->
+    <string name="title_subtitle">O teu mentor de desenvolvimento Android</string>
+    <string name="title_chat_history">Histórico de conversas</string>
+    <string name="title_settings">Definições</string>
+    <string name="title_about">Sobre</string>
+
+    <!-- Chat History (placeholder) -->
+    <string name="chat_history_title">Histórico de conversas</string>
+    <string name="chat_history_new_chat">Nova conversa</string>
+    <string name="chat_history_open_demo">Abrir conversa de exemplo</string>
+
+    <!-- Active Chat (placeholder) -->
+    <string name="active_chat_title">Conversa</string>
+    <string name="active_chat_new">Nova conversa</string>
+    <string name="active_chat_existing">Conversa n.º %1$d</string>
+
+    <!-- About -->
+    <string name="about_title">Sobre</string>
+    <string name="about_description">O DroidMentor é um mentor pessoal de desenvolvimento Android com tecnologia da API Gemini da Google. Usa a tua própria chave de API e pergunta o que quiseres sobre desenvolvimento Android.</string>
+    <string name="about_authors">Autores</string>
+    <string name="about_course">Programação de Dispositivos Móveis · ISEL · 2026/2027</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Definições</string>
+    <string name="settings_api_key_label">Chave da API Gemini</string>
+    <string name="settings_api_key_hint">Guardada apenas neste dispositivo.</string>
+    <string name="settings_show_key">Mostrar chave</string>
+    <string name="settings_hide_key">Esconder chave</string>
+    <string name="settings_save">Guardar</string>
+</resources>
