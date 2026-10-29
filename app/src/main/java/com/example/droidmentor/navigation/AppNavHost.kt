@@ -3,14 +3,15 @@ package com.example.droidmentor.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ChatBubble
-import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,7 +19,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.droidmentor.R
+import com.example.droidmentor.container.appContainer
 import com.example.droidmentor.ui.aboutScreen.AboutScreen
+import com.example.droidmentor.ui.activeChatScreen.ActiveChatScreen
+import com.example.droidmentor.ui.activeChatScreen.ActiveChatViewModel
 import com.example.droidmentor.ui.common.MyCustomButton
 import com.example.droidmentor.ui.common.PlaceholderScreen
 import com.example.droidmentor.ui.settingsScreen.SettingsScreen
@@ -77,21 +81,13 @@ fun AppNavHost(
                     defaultValue = Routes.NEW_CHAT_ID
                 },
             ),
-        ) { entry ->
-            val chatId = entry.arguments?.getLong(Routes.ARG_CHAT_ID) ?: Routes.NEW_CHAT_ID
-            // TODO(A): replace this placeholder with the real ActiveChatScreen.
-            PlaceholderScreen(
-                title = stringResource(R.string.active_chat_title),
+        ) {
+            val service = LocalContext.current.appContainer.chatService
+            val vm: ActiveChatViewModel = viewModel(factory = ActiveChatViewModel.Factory(service))
+            ActiveChatScreen(
+                viewModel = vm,
                 onBack = { navController.popBackStack() },
-            ) {
-                Text(
-                    text = if (chatId == Routes.NEW_CHAT_ID) {
-                        stringResource(R.string.active_chat_new)
-                    } else {
-                        stringResource(R.string.active_chat_existing, chatId)
-                    },
-                )
-            }
+            )
         }
 
         composable(Routes.ABOUT) {

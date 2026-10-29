@@ -16,10 +16,15 @@
     <string name="chat_history_new_chat">New chat</string>
     <string name="chat_history_open_demo">Open demo chat</string>
 
-    <!-- Active Chat (placeholder) -->
+    <!-- Active Chat -->
     <string name="active_chat_title">Chat</string>
     <string name="active_chat_new">New conversation</string>
     <string name="active_chat_existing">Conversation #%1$d</string>
+    <string name="active_chat_empty">Ask the mentor anything about Android development.</string>
+    <string name="active_chat_input_hint">Ask the mentor…</string>
+    <string name="active_chat_send">Send</string>
+    <string name="active_chat_error">Error: %1$s</string>
+    <string name="active_chat_dismiss">Dismiss</string>
 
     <!-- About -->
     <string name="about_title">About</string>
