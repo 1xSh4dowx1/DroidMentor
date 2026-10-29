@@ -18,8 +18,6 @@
 
     <!-- Active Chat -->
     <string name="active_chat_title">Chat</string>
-    <string name="active_chat_new">New conversation</string>
-    <string name="active_chat_existing">Conversation #%1$d</string>
     <string name="active_chat_empty">Ask the mentor anything about Android development.</string>
     <string name="active_chat_input_hint">Ask the mentor…</string>
     <string name="active_chat_send">Send</string>
@@ -39,4 +37,7 @@
     <string name="settings_show_key">Show key</string>
     <string name="settings_hide_key">Hide key</string>
     <string name="settings_save">Save</string>
+    <string name="settings_saved">API key saved.</string>
+    <string name="settings_saved_key">Saved key: %1$s</string>
+    <string name="settings_remove_key">Remove key</string>
 </resources>

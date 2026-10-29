@@ -3,10 +3,6 @@ package com.example.droidmentor.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ChatBubble
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,6 +22,7 @@ import com.example.droidmentor.ui.activeChatScreen.ActiveChatViewModel
 import com.example.droidmentor.ui.common.MyCustomButton
 import com.example.droidmentor.ui.common.PlaceholderScreen
 import com.example.droidmentor.ui.settingsScreen.SettingsScreen
+import com.example.droidmentor.ui.settingsScreen.SettingsViewModel
 import com.example.droidmentor.ui.titleScreen.TitleScreen
 
 /**
@@ -95,13 +92,10 @@ fun AppNavHost(
         }
 
         composable(Routes.SETTINGS) {
-            // Plain remember (not rememberSaveable) so the key is never written to the saved-state Bundle.
-            // TODO(C, milestone 2): replace with SettingsViewModel + SettingsRepository.
-            var apiKey by remember { mutableStateOf("") }
+            val repository = LocalContext.current.appContainer.settingsRepository
+            val vm: SettingsViewModel = viewModel(factory = SettingsViewModel.Factory(repository))
             SettingsScreen(
-                apiKey = apiKey,
-                onApiKeyChange = { apiKey = it },
-                onSave = { /* TODO(C): persist through SettingsRepository */ },
+                viewModel = vm,
                 onBack = { navController.popBackStack() },
             )
         }

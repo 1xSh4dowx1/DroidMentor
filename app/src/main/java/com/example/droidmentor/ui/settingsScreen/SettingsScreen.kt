@@ -13,8 +13,10 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,17 +29,34 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.core.maskApiKey
 import com.example.droidmentor.R
 import com.example.droidmentor.ui.common.AppScaffold
 import com.example.droidmentor.ui.common.MyCustomButton
 import com.example.droidmentor.ui.theme.DroidMentorTheme
 
-/** Stateless: the caller owns the API key state (ViewModel + SettingsRepository later on). */
 @Composable
 fun SettingsScreen(
-    apiKey: String,
+    viewModel: SettingsViewModel,
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    SettingsScreenContent(
+        state = viewModel.state,
+        onApiKeyChange = viewModel::onApiKeyChange,
+        onSave = viewModel::save,
+        onClear = viewModel::clear,
+        onBack = onBack,
+        modifier = modifier,
+    )
+}
+
+@Composable
+private fun SettingsScreenContent(
+    state: SettingsState,
     onApiKeyChange: (String) -> Unit,
     onSave: () -> Unit,
+    onClear: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -57,7 +76,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             OutlinedTextField(
-                value = apiKey,
+                value = state.apiKey,
                 onValueChange = onApiKeyChange,
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text(stringResource(R.string.settings_api_key_label)) },
@@ -90,21 +109,64 @@ fun SettingsScreen(
             MyCustomButton(
                 text = stringResource(R.string.settings_save),
                 onClick = onSave,
-                enabled = apiKey.isNotBlank(),
+                enabled = state.canSave,
             )
+            if (state.savedApiKey != null) {
+                Text(
+                    text = if (state.justSaved) {
+                        stringResource(R.string.settings_saved)
+                    } else {
+                        stringResource(R.string.settings_saved_key, maskApiKey(state.savedApiKey))
+                    },
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                TextButton(onClick = onClear) {
+                    Text(stringResource(R.string.settings_remove_key))
+                }
+            }
         }
     }
 }
 
-@Preview(name = "Light", showBackground = true)
-@Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Empty", showBackground = true)
 @Composable
-private fun SettingsScreenPreview() {
+private fun SettingsScreenEmptyPreview() {
     DroidMentorTheme {
-        SettingsScreen(
-            apiKey = "AIza-example-key",
+        SettingsScreenContent(
+            state = SettingsState(),
             onApiKeyChange = {},
             onSave = {},
+            onClear = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "Saved - Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun SettingsScreenSavedPreview() {
+    val key = "AIzaExampleKey1234567890abcdef"
+    DroidMentorTheme {
+        SettingsScreenContent(
+            state = SettingsState(apiKey = key, savedApiKey = key),
+            onApiKeyChange = {},
+            onSave = {},
+            onClear = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "Landscape", showBackground = true, widthDp = 640, heightDp = 360)
+@Composable
+private fun SettingsScreenLandscapePreview() {
+    DroidMentorTheme {
+        SettingsScreenContent(
+            state = SettingsState(apiKey = "AIzaExampleKey1234567890abcdef"),
+            onApiKeyChange = {},
+            onSave = {},
+            onClear = {},
             onBack = {},
         )
     }
